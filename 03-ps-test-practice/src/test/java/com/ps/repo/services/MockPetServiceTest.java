@@ -25,10 +25,13 @@ public class MockPetServiceTest {
     public static final Long PET_ID = 1L;
     public static final User owner = buildUser("test@gmail.com", "a!2#tre", UserType.OWNER);
 
+    @InjectMocks
     SimplePetService simplePetService;
 
+    @Mock
     PetRepo petRepo;
 
+    @Before
     public void initMocks() {
         MockitoAnnotations.initMocks(this);
     }
