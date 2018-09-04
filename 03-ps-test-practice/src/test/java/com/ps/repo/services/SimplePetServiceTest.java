@@ -59,13 +59,24 @@ public class SimplePetServiceTest {
     @Test
     public void deleteByIdNegative() {
         //TODO 14. Analyse the stub implementation and add a test for  simplePetService.deleteById(99L)
-        simplePetService.deleteById(99L);
+        boolean thrown = false;
+
+        try {
+            simplePetService.deleteById(99L);
+        } catch (NotFoundException e) {
+            thrown = true;
+        }
+
+        assertTrue(thrown);
+
     }
 
     //positive test, we know that pets for this owner exist and how many
     @Test
     public void findByOwnerPositive() {
         //TODO 15. Analyse the stub implementation and add a test for simplePetService.findAllByOwner(owner)
+        Set<Pet> result =  simplePetService.findAllByOwner(owner);
+        assertNotNull(result);
     }
 
     //negative test, we know that pets for this owner do not exist
