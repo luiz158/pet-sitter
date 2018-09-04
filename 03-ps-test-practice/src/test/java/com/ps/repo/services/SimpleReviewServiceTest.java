@@ -57,8 +57,20 @@ public class SimpleReviewServiceTest {
         reviewSet.add(review);
 
         //TODO 17. Define the mock behavoiur using Mockito methods
+        User user1 = buildUser("gigi@gmail.com", "1!2#tre", UserType.OWNER);
+        Request req1 = new Request();
+        req1.setUser(user1);
+        Review review1 = new Review();
+        review1.setRequest(req1);
+
+        Set<Review> reviews = new HashSet<>();
+        reviews.add(review1);
+
+        when(reviewMockRepo.findAllForUser(user1)).thenReturn(reviews);
+
         Set<Review> result = simpleReviewService.findAllByUser(user);
         verify(reviewMockRepo, times(1)).findAllForUser(user);
+
         assertEquals(result.size(), 1);
     }
 }
