@@ -12,10 +12,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -44,10 +48,24 @@ public class TestNamedJdbcTemplateUserRepo {
         assertEquals("John", user.getUsername());
     }
 
-    @Test
+    @Test(expected = EmptyResultDataAccessException.class)
     public void testNoFindById() {
         User user = userRepo.findById(99L);
         assertEquals("John", user.getUsername());
+    }
+
+    @Test
+    public void testFindAll() {
+        Set<User> set = userRepo.findAll();
+        assertEquals(4, set.size());
+    }
+
+    @Test
+    public void testCreateUser() {
+        int result = userRepo.createUser(5L, "Pit","pit", "pit@gmail.com");
+        assertEquals(1, result);
+        Set<User> set = userRepo.findAllByUserName("Pit", true);
+        assertEquals(1, set.size());
     }
     
 }

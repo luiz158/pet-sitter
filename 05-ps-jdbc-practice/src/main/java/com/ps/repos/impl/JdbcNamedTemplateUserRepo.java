@@ -59,13 +59,16 @@ public class JdbcNamedTemplateUserRepo implements UserRepo {
         params.put("email", email);
         String query = "insert into p_user(ID, USERNAME, PASSWORD, EMAIL) values(:id,:un,:pass, :email)";
         // add NamedParameterJdbcTemplate instance call to create an user
-        return 0;
+        return jdbcNamedTemplate.update(query, params);
     }
 
     @Override
     public int deleteById(Long userId) {
         // add NamedParameterJdbcTemplate instance call to delete an user
-        return 0;
+        String sql = "delete from p_user where id = ?";
+        Map<String, Object> map = new HashMap<>();
+        map.put("user", userId);
+        return jdbcNamedTemplate.update(sql, map);
     }
 
     @Override
@@ -79,7 +82,7 @@ public class JdbcNamedTemplateUserRepo implements UserRepo {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         // add NamedParameterJdbcTemplate instance call to find an user
-        return null;
+        return jdbcNamedTemplate.queryForObject(sql, params, rowMapper);
     }
 
     @Override
