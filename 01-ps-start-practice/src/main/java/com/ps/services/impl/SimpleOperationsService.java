@@ -25,11 +25,15 @@ public class SimpleOperationsService implements OperationsService {
     @Override
     public Response createResponse(Long sitterId, Long requestId) {
         // get sitter
-        // TODO 1. retrieve sitter * request  (according to diagram 2.5)
-
+        User user = userRepo.findById(sitterId);
+        Request request = requestRepo.findById(requestId);
         //create a response
         Response response = new Response();
-        //TODO 2. populate & save the response object
+        response.setUser(user);
+        response.setRequest(request);
+        response.setResponseStatus(ResponseStatus.PROPOSED);
+        request.addResponse(response);
+        responseRepo.save(response);
         return response;
     }
 
