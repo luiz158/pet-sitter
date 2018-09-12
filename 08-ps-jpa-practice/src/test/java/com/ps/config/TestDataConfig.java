@@ -96,8 +96,7 @@ public class TestDataConfig {
 
     @Bean
     public PlatformTransactionManager transactionManager() {
-
-        return null; //TODO 41. Create an appropriate transaction manager bean
+        return new JpaTransactionManager(entityManagerFactory()); //TODO 41. Create an appropriate transaction manager bean
     }
 
     @Bean
