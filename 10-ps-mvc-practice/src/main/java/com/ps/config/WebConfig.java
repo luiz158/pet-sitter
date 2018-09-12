@@ -22,6 +22,7 @@ import java.util.Locale;
  */
 @Configuration
 // TODO 45. Add the proper annotation to enable Spring @MVC
+@EnableWebMvc
 @ComponentScan(basePackages = {"com.ps.web"})
 public class WebConfig extends WebMvcConfigurerAdapter {
     //Declare our static resources. I added cache to the java config but it?s not required.
@@ -48,7 +49,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public InternalResourceViewResolver getViewResolver(){
         // TODO 46. Complete the definition for a bean of type InternalResourceViewResolver that will map the requests to views
         // under '/WEB-INF/' with extension '.jsp'
-        return null; // return resolver;
+        InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
+        internalResourceViewResolver.setPrefix("/WEB-INF/");
+        internalResourceViewResolver.setSuffix(".jsp");
+        internalResourceViewResolver.setRequestContextAttribute("requestContext");
+        return internalResourceViewResolver; // return resolver;
     }
 
     @Bean
