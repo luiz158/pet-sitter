@@ -82,4 +82,5 @@ public class TestDataConfig {
     }
 
    //TODO 31. Define a transaction manager bean of the appropriate type
+
 }
