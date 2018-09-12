@@ -7,6 +7,7 @@ import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
+import javax.xml.ws.Service;
 
 /**
  * Created by iuliana.cosmina on 8/14/16.
@@ -17,7 +18,7 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{
-              // TODO 53. Set the security context as root context
+                ServiceConfig.class// TODO 53. Set the security context as root context
         };
     }
 
