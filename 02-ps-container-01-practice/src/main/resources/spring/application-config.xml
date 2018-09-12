@@ -5,7 +5,7 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- TODO 8. Complete the configuration with the necessary infrastructure bean-->
-       <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations" value="classpath:db/datasource.properties"/>
     </bean>
 
