@@ -1,6 +1,8 @@
 package com.ps.integration;
 
+import com.ps.PetConfigClass;
 import com.ps.base.UserType;
+import com.ps.config.TestAppConfig;
 import com.ps.ents.Pet;
 import com.ps.ents.User;
 import com.ps.services.PetService;
@@ -19,11 +21,15 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by iuliana.cosmina on 4/17/16.
  */
-//TODO 18. Complete the test class definition in order for all the test to pass.
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {
+        TestAppConfig.class,
+        PetConfigClass.class
+})
 public class SpringPetServiceTest {
 
-    public static final Long PET_ID = 1L;
-    public static final User owner = buildUser("test@gmail.com", "a!2#tre", UserType.OWNER);
+    private static final Long PET_ID = 1L;
+    private static final User owner = buildUser("test@gmail.com", "a!2#tre", UserType.OWNER);
 
     @Autowired
     PetService simplePetService;
