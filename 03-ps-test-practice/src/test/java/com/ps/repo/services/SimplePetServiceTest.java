@@ -20,6 +20,7 @@ import static org.junit.Assert.*;
 public class SimplePetServiceTest {
     public static final Long PET_ID = 1L;
     public static final User owner = buildUser("test@gmail.com", "a!2#tre", UserType.OWNER);
+    private static final int PET_NUM = 2;
 
     private StubPetRepo stubPetRepo = new StubPetRepo();
 
@@ -65,7 +66,8 @@ public class SimplePetServiceTest {
     //positive test, we know that pets for this owner exist and how many
     @Test
     public void findByOwnerPositive() {
-        //TODO 15. Analyse the stub implementation and add a test for simplePetService.findAllByOwner(owner)
+        Set<Pet> pets = simplePetService.findAllByOwner(owner);
+        assertEquals(pets.size(), PET_NUM);
     }
 
     //negative test, we know that pets for this owner do not exist
