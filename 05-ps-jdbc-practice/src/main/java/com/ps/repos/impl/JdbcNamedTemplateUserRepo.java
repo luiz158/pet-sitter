@@ -15,12 +15,16 @@ import java.util.*;
  * Created by iuliana.cosmina on 6/4/16.
  */
 @Repository("userNamedTemplateRepo")
-//TODO 29. Some of the methods have incomplete bodies that need to be completed with appropriate NamedParameterJdbcTemplate instance calls.
 public class JdbcNamedTemplateUserRepo implements UserRepo {
 
     private RowMapper<User> rowMapper = new UserRowMapper();
 
     protected NamedParameterJdbcTemplate jdbcNamedTemplate;
+
+    private final String INSERT_SQL = "insert into p_user(ID, USERNAME, PASSWORD, EMAIL) values(:id,:un,:pass, :email)";
+    private final String DELETE_ONE_SQL = "delete from p_user where id = :id";
+    private final String SELECT_ONE_SQL = "select id, email, username,password from p_user where id= :id";
+
 
     @Autowired
     public JdbcNamedTemplateUserRepo(NamedParameterJdbcTemplate jdbcNamedTemplate) {
@@ -57,15 +61,13 @@ public class JdbcNamedTemplateUserRepo implements UserRepo {
         params.put("un", username);
         params.put("pass", password);
         params.put("email", email);
-        String query = "insert into p_user(ID, USERNAME, PASSWORD, EMAIL) values(:id,:un,:pass, :email)";
-        // add NamedParameterJdbcTemplate instance call to create an user
-        return 0;
+
+        return jdbcNamedTemplate.getJdbcOperations().update(INSERT_SQL, params);
     }
 
     @Override
     public int deleteById(Long userId) {
-        // add NamedParameterJdbcTemplate instance call to delete an user
-        return 0;
+        return jdbcNamedTemplate.getJdbcOperations().update(DELETE_ONE_SQL, userId);
     }
 
     @Override
@@ -75,11 +77,10 @@ public class JdbcNamedTemplateUserRepo implements UserRepo {
 
     @Override
     public User findById(Long id) {
-        String sql = "select id, email, username,password from p_user where id= :id";
-        Map<String, Object> params = new HashMap<>();
-        params.put("id", id);
-        // add NamedParameterJdbcTemplate instance call to find an user
-        return null;
+        Map<String, Object> params = new HashMap<String, Object>() {{
+            put("id", id);
+        }};
+        return jdbcNamedTemplate.queryForObject(SELECT_ONE_SQL, params, rowMapper);
     }
 
     @Override
