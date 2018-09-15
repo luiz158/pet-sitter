@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
  * Created by iuliana.cosmina on 4/17/16.
  */
 public class SimpleReviewServiceTest {
-    public static final Long REVIEW_ID = 1L;
+    private static final Long REVIEW_ID = 1L;
 
     private ReviewRepo reviewMockRepo = mock(ReviewRepo.class);
 
@@ -56,7 +56,8 @@ public class SimpleReviewServiceTest {
         Set<Review> reviewSet = new HashSet<>();
         reviewSet.add(review);
 
-        //TODO 17. Define the mock behavoiur using Mockito methods
+        when(reviewMockRepo.findAllForUser(user)).thenReturn(reviewSet);
+
         Set<Review> result = simpleReviewService.findAllByUser(user);
         verify(reviewMockRepo, times(1)).findAllForUser(user);
         assertEquals(result.size(), 1);
