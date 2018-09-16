@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -52,7 +51,10 @@ public class HibernateUserRepo implements UserRepo {
     @Override
     public List<User> findAllByUserName(String username, boolean exactMatch) {
         if (exactMatch) {
-            return new ArrayList<>();  // TODO 36. Add Hibernate query to extract wll users with username = :username
+            return session()
+                    .createQuery("from User u where username= ?")
+                    .setParameter(0, username)
+                    .list();
         } else {
             return session().createQuery("from User u where username like ?")
                     .setParameter(0, "%" + username + "%").list();
@@ -67,7 +69,10 @@ public class HibernateUserRepo implements UserRepo {
 
     @Override
     public long countUsers() {
-        return 0L; // TODO 37. Add query to count all users
+        return (Long) session()
+                .createQuery("select count u.id from User u")
+                .list()
+                .get(0);
     }
 
     @Override
@@ -88,7 +93,10 @@ public class HibernateUserRepo implements UserRepo {
 
     @Override
     public void deleteById(Long userId) {
-        // TODO 38. Add code to delete an user by its id.
+        session()
+                .createQuery("delete User where id = :id")
+                .setParameter("id", userId)
+                .executeUpdate();
     }
 
     @Override
