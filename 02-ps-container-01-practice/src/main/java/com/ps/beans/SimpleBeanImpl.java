@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Created by iuliana.cosmina on 3/26/16.
+ * 16/09
  */
 public class SimpleBeanImpl implements SimpleBean {
 
