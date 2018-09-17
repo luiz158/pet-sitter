@@ -93,10 +93,9 @@ public class HibernateUserRepo implements UserRepo {
 
     @Override
     public void deleteById(Long userId) {
-        session()
-                .createQuery("delete User where id = :id")
-                .setParameter("id", userId)
-                .executeUpdate();
+        User user = (User) session().createQuery("from User u where u.id= :id").
+                setParameter("id", userId).uniqueResult();
+        session().delete(user);
     }
 
     @Override
