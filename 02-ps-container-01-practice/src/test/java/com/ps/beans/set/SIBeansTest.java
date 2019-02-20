@@ -6,8 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by iuliana.cosmina on 3/26/16.
@@ -25,6 +24,14 @@ public class SIBeansTest {
             logger.info("Bean " + beanName + " of type " + ctx.getBean(beanName).getClass().getSimpleName());
         }
 
-        //TODO 4. Retrieve beans of types ComplexBean and make sure their dependencies were correctly set.
+        // 4. Retrieve beans of types ComplexBean and make sure their dependencies were correctly set.
+        assertEquals(((ComplexBeanImpl)ctx.getBean("complexBean0")).getSimpleBean(), ctx.getBean("simpleBean0"));
+        assertFalse(((ComplexBeanImpl)ctx.getBean("complexBean0")).isComplex());
+
+        assertEquals(((ComplexBeanImpl)ctx.getBean("complexBean1")).getSimpleBean(), ctx.getBean("simpleBean0"));
+        assertTrue(((ComplexBeanImpl)ctx.getBean("complexBean1")).isComplex());
+
+        assertEquals(((ComplexBean2Impl)ctx.getBean("complexBean2")).getSimpleBean(), ctx.getBean("simpleBean0"));
+        assertTrue(((ComplexBean2Impl)ctx.getBean("complexBean2")).isComplex());
     }
 }
