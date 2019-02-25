@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Set;
 
@@ -22,6 +22,8 @@ import static org.junit.Assert.assertNotNull;
  * Created by iuliana.cosmina on 4/17/16.
  */
 //TODO 19. Complete the test class definition in order for all the test to pass.
+@RunWith(SpringRunner.class)
+@ContextConfiguration(classes = {TestAppConfig.class, PetConfigClass.class})
 public class SpringPetServiceTest2 {
 
     public static final Long PET_ID = 1L;
