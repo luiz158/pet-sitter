@@ -4,6 +4,27 @@ Next page 1
 
 == Spring Bean LifeCycle and Configuration
 
+Dependency Injection
+
+----
+* Factory, (static factory)
+* Abstract Factory,
+* Singleton,
+* Builder,
+* Decorator,
+* Proxy,
+* Service Locator,
+* reflection.
+----
+
+----
+This software design pattern implies that clients delegate the dependency resolution to an
+external service. The client is not allowed to call the injector service, which is why this software pattern is
+characterized by Inversion of Control behavior, also known as the Don’t call us, we’ll call you! principle.
+----
+
+
+
 todo about Spring Bean LifeCycle and Configuration
 
 == Testing Spring Applications
