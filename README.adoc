@@ -1,6 +1,6 @@
 = Pet Sitter Fork
 
-Next page 1
+Next page 97
 
 == Spring Bean LifeCycle and Configuration
 
@@ -23,6 +23,25 @@ external service. The client is not allowed to call the injector service, which 
 characterized by Inversion of Control behavior, also known as the Don’t call us, we’ll call you! principle.
 ----
 
+Spring IoC and Dependency Injection
+
+* AnnotationConfigApplicationContext
+* ClassPathXmlApplicationContext
+
+Spring Configuration
+
+Stereotype annotations
+----
+@Component,
+@Service,
+@Repository
+@Configuration,
+@Bean
+----
+
+Using FactoryBean
+InitializingBean
+DisposableBean
 
 
 todo about Spring Bean LifeCycle and Configuration
