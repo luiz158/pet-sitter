@@ -1,6 +1,6 @@
 = Pet Sitter Fork
 
-Next page 111
+Next page 153
 
 == Spring Bean LifeCycle and Configuration
 
@@ -60,6 +60,21 @@ behavior
 image::img/Unit and integration testing concepts.jpg[]
 
 The pseudo-dependencies can be stubs or mocks
+
+To enable support of Spring context
+----
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:spring/test-cfg.xml"})
+----
+
+May be used for init mock as Dependency
+----
+@InjectMocks
+----
+
+All tests are passed
+
+How to build Gradle report
 
 
 
