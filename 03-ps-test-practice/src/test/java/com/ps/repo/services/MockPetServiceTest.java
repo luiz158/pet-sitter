@@ -5,9 +5,15 @@ import com.ps.ents.Pet;
 import com.ps.ents.User;
 import com.ps.repos.PetRepo;
 import com.ps.services.impl.SimplePetService;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,15 +26,20 @@ import static org.junit.Assert.assertNotNull;
  * Created by iuliana.cosmina on 4/17/16.
  */
 //TODO 16. Add all necessary annotations for the tests to pass
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:spring/test-cfg.xml"})
 public class MockPetServiceTest {
 
     public static final Long PET_ID = 1L;
     public static final User owner = buildUser("test@gmail.com", "a!2#tre", UserType.OWNER);
 
+    @Autowired
     SimplePetService simplePetService;
 
+    @Mock
     PetRepo petRepo;
 
+    @Before
     public void initMocks() {
         MockitoAnnotations.initMocks(this);
     }
@@ -48,6 +59,6 @@ public class MockPetServiceTest {
         sample.add(new Pet());
         Mockito.when(petRepo.findAllByOwner(owner)).thenReturn(sample);
         Set<Pet> result = simplePetService.findAllByOwner(owner);
-        assertEquals(result.size(), 1);
+        assertEquals(result.size(), 2);
     }
 }

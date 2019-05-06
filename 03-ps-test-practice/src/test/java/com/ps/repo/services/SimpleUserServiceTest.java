@@ -6,6 +6,10 @@ import com.ps.repos.UserRepo;
 import com.ps.services.impl.SimpleUserService;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,10 +21,13 @@ import static com.ps.util.TestObjectsBuilder.*;
 /**
  * Created by iuliana.cosmina on 4/17/16.
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:spring/test-cfg.xml"})
 public class SimpleUserServiceTest {
 
     public static final Long USER_ID = 1L;
 
+    @InjectMocks
     private UserRepo userMockRepo;
     private SimpleUserService simpleUserService;
 

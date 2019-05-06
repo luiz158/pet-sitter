@@ -1,6 +1,6 @@
 = Pet Sitter Fork
 
-Next page 97
+Next page 111
 
 == Spring Bean LifeCycle and Configuration
 
@@ -38,17 +38,30 @@ Stereotype annotations
 @Configuration,
 @Bean
 ----
+image::img/Annotations used in this book.jpg[]
 
 Using FactoryBean
 InitializingBean
 DisposableBean
 
+@AliasFor
 
-todo about Spring Bean LifeCycle and Configuration
+image::img/Prefixes_and_corresponding_paths.jpg[img/Prefixes_and_corresponding_paths.jpg]
+
 
 == Testing Spring Applications
 
-todo
+Unit testing implies testing the smallest testable parts of an application individually and independently,
+isolated from any other units that might affect their behavior in an unpredictable way.
+The dependencies
+are kept to a minimum, and most of them will be replaced with pseudo-units reproducing the expected
+behavior
+
+image::img/Unit and integration testing concepts.jpg[]
+
+The pseudo-dependencies can be stubs or mocks
+
+
 
 == Aspect Oriented Programming with Spring
 

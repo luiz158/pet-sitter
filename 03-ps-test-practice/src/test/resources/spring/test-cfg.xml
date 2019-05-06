@@ -5,5 +5,7 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean name="petRepo" class="com.ps.repo.stub.StubPetRepo" init-method="init"/>
+    <bean name="simplePetService" class="com.ps.services.impl.SimplePetService"/>
+    <bean name="simpleUserService" class="com.ps.services.impl.SimpleUserService"/>
 
 </beans>

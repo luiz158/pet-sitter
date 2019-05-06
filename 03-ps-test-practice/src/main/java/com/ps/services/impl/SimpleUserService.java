@@ -5,6 +5,7 @@ import com.ps.ents.User;
 import com.ps.repos.UserRepo;
 import com.ps.services.UserService;
 import com.ps.util.RecordBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 

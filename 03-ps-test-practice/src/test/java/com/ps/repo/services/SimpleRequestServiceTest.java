@@ -11,6 +11,9 @@ import org.jmock.Mockery;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,6 +25,8 @@ import static com.ps.util.TestObjectsBuilder.*;
 /**
  * Created by iuliana.cosmina on 4/17/16.
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:spring/test-cfg.xml"})
 public class SimpleRequestServiceTest {
 
     public static final Long REQUEST_ID = 1L;

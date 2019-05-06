@@ -8,6 +8,9 @@ import com.ps.repos.NotFoundException;
 import com.ps.services.impl.SimplePetService;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Set;
 
@@ -17,6 +20,8 @@ import static org.junit.Assert.*;
 /**
  * Created by iuliana.cosmina on 4/15/16.
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:spring/test-cfg.xml"})
 public class SimplePetServiceTest {
     public static final Long PET_ID = 1L;
     public static final User owner = buildUser("test@gmail.com", "a!2#tre", UserType.OWNER);
@@ -56,7 +61,7 @@ public class SimplePetServiceTest {
         Pet pet = simplePetService.findById(PET_ID);
         assertNull(pet);
     }
-    @Test
+    @Test(expected = NotFoundException.class)
     public void deleteByIdNegative() {
         //TODO 14. Analyse the stub implementation and add a test for  simplePetService.deleteById(99L)
         simplePetService.deleteById(99L);
@@ -66,6 +71,8 @@ public class SimplePetServiceTest {
     @Test
     public void findByOwnerPositive() {
         //TODO 15. Analyse the stub implementation and add a test for simplePetService.findAllByOwner(owner)
+        final Set<Pet> pets = simplePetService.findAllByOwner(owner);
+        assertFalse(pets.isEmpty());
     }
 
     //negative test, we know that pets for this owner do not exist
