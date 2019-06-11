@@ -9,16 +9,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import java.util.Set;
+
+import static org.junit.Assert.*;
 
 /**
  * Created by iuliana.cosmina on 6/4/16.
@@ -44,10 +43,46 @@ public class TestNamedJdbcTemplateUserRepo {
         assertEquals("John", user.getUsername());
     }
 
-    @Test
+    @Test(expected = EmptyResultDataAccessException.class)
     public void testNoFindById() {
         User user = userRepo.findById(99L);
         assertEquals("John", user.getUsername());
     }
-    
+
+    @Test
+    public void testFindAll() {
+        final Set<User> all = userRepo.findAll();
+        final int count = userRepo.countUsers();
+        assertFalse(all.isEmpty());
+        assertEquals(4, all.size());
+        assertEquals(4, count);
+    }
+
+    @Test
+    public void testCreateUser() {
+        int result  = userRepo.createUser(999L, "Dima", "mypass", "d@opympus.com");
+        assertEquals(1, result);
+    }
+
+    @Test
+    public void testUpdate(){
+        int result  = userRepo.updatePassword(1009L, "newp8989ass");
+        assertEquals(0, result);
+    }
+
+    @Test
+    public void testDelete(){
+        int result  = userRepo.deleteById(1L);
+        assertEquals(1, result);
+    }
+
+    @Test
+    @Sql(statements = {"drop table NEW_P_USER if exists;"})
+    public void testCreateTable(){
+        int result  = userRepo.createTable("new_p_user");
+        // table exists but is empty
+        assertEquals(0, result);
+    }
+
+
 }

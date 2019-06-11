@@ -6,7 +6,9 @@ import com.ps.repos.util.UserRowMapper;
 import com.ps.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -57,15 +59,14 @@ public class JdbcNamedTemplateUserRepo implements UserRepo {
         params.put("un", username);
         params.put("pass", password);
         params.put("email", email);
-        String query = "insert into p_user(ID, USERNAME, PASSWORD, EMAIL) values(:id,:un,:pass, :email)";
-        // add NamedParameterJdbcTemplate instance call to create an user
-        return 0;
+        String query = "insert into p_user(ID, USERNAME, PASSWORD, EMAIL) values(:id,:un,:pass,:email)";
+        return jdbcNamedTemplate.update(query, params);
     }
 
     @Override
     public int deleteById(Long userId) {
-        // add NamedParameterJdbcTemplate instance call to delete an user
-        return 0;
+        SqlParameterSource namedParameters = new MapSqlParameterSource("id", userId);
+        return jdbcNamedTemplate.update("delete from p_user where id = :id", namedParameters);
     }
 
     @Override
@@ -78,8 +79,7 @@ public class JdbcNamedTemplateUserRepo implements UserRepo {
         String sql = "select id, email, username,password from p_user where id= :id";
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
-        // add NamedParameterJdbcTemplate instance call to find an user
-        return null;
+        return jdbcNamedTemplate.queryForObject(sql, params, rowMapper);
     }
 
     @Override

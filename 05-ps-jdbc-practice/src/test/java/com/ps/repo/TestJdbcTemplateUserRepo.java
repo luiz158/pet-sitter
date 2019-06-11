@@ -45,17 +45,16 @@ public class TestJdbcTemplateUserRepo {
         assertEquals("John", user.getUsername());
     }
 
-    @Test
+    @Test(expected = EmptyResultDataAccessException.class)
     public void testNoFindById() {
-        // TODO 27: Use the JdbcTemplate instance to query for a user that does not exist and make this test pass
-        User user = null;
+        Long notExistingId = 1L << 31 - 1;
+        User user = userRepo.findById(notExistingId);
         assertEquals("Darius", user.getUsername());
     }
 
     @Test
     public void testCount(){
-        int result = 0;
-        // TODO 28: Use the JdbcTemplate instance to query for the number of rows in the P_USER table
+        int result = userRepo.countUsers();
         assertEquals(4, result);
     }
 
@@ -64,7 +63,7 @@ public class TestJdbcTemplateUserRepo {
         int result  = userRepo.createUser(5L, "Diana", "mypass", "diana@opympus.com");
         assertEquals(1, result);
         Set<User> dianas = userRepo.findAllByUserName("Diana", true);
-        assertTrue(dianas.size() == 1);
+        assertEquals(1, dianas.size());
     }
 
     @Test
