@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService {
 
     // TODO 34. Make this method execute in a read-write transaction and declare the
     // transaction to rollback in case a MailSendingException exception is used
+    @Transactional
     @Override
     public int updatePassword(Long userId, String newPass) throws MailSendingException {
         User u = userRepo.findById(userId);
