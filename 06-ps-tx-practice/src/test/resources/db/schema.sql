@@ -1,3 +1,5 @@
+drop table NEW_P_USER if exists;
+
 drop table P_USER if exists;
 
 CREATE TABLE P_USER

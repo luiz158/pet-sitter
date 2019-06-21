@@ -13,6 +13,7 @@ import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 import javax.sql.DataSource;
 import java.sql.Driver;
@@ -23,7 +24,7 @@ import java.sql.Driver;
 @Configuration
 @Profile("dev")
 @PropertySource("classpath:db/db.properties")
-public class TestDataConfig {
+public class TestDataConfig implements TransactionManagementConfigurer {
 
     @Value("${db.driverClassName}")
     private String driverClassName;
@@ -87,5 +88,8 @@ public class TestDataConfig {
         return new JdbcTemplate(dataSource());
     }
 
-   //TODO 31. Define a transaction manager bean of the appropriate type
+   @Override
+   public PlatformTransactionManager annotationDrivenTransactionManager() {
+       return txManager();
+   }
 }

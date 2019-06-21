@@ -14,7 +14,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
@@ -29,6 +28,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {TestDataConfig.class, AppConfig.class})
 @ActiveProfiles("dev")
+@Transactional
 public class TransactionalJdbcRepoTest {
 
     @Autowired
@@ -40,14 +40,14 @@ public class TransactionalJdbcRepoTest {
         assertNotNull(userRepo);
     }
 
-    @Transactional
+//    @Transactional
     @Test
     public void testFindById() {
         User user = userRepo.findById(1L);
         assertEquals("John", user.getUsername());
     }
 
-    @Transactional
+//    @Transactional
     @Test
     public void updatePassword() {
         int res = userRepo.updatePassword(1L, "newPass");
@@ -55,7 +55,8 @@ public class TransactionalJdbcRepoTest {
     }
 
     @Test
-    @Transactional @Rollback
+//    @Transactional
+//    @Rollback
     public void testCreate(){
         int result  = userRepo.createUser(5L, "Diana", "mypass", "diana@opympus.com", UserType.BOTH);
         assertEquals(1, result);

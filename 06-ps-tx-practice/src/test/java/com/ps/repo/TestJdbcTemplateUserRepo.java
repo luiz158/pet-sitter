@@ -14,6 +14,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
@@ -25,6 +26,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {TestDataConfig.class, AppConfig.class})
 @ActiveProfiles("dev")
+@Transactional
 public class TestJdbcTemplateUserRepo {
 
     @Autowired
@@ -74,6 +76,7 @@ public class TestJdbcTemplateUserRepo {
         int result  = userRepo.deleteById(4L);
         assertEquals(1, result);
     }
+
 
     @Test
     public void testCreateTable(){
