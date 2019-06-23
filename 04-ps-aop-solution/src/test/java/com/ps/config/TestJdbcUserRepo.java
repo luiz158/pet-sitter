@@ -42,7 +42,7 @@ public class TestJdbcUserRepo {
     @Test
     public void testFindById() {
         User user = userRepo.findById(1L);
-        assertEquals("John", user.getUsername());
+        assertEquals("new_name", user.getUsername());
     }
 
     @Test

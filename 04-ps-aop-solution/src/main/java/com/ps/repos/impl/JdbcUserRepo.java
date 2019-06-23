@@ -197,7 +197,7 @@ public class JdbcUserRepo implements UserRepo {
             ps.setLong(2, userId);
             ps.executeUpdate();
             conn.commit();
-            if(true) {
+            if(false) {
                 throw new RuntimeException("Bubu baba..");
             }
             return 1;
