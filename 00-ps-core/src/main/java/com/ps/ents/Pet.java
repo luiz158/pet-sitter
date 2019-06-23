@@ -2,9 +2,10 @@ package com.ps.ents;
 
 import com.ps.base.AbstractEntity;
 import com.ps.base.PetType;
+import org.hibernate.annotations.Entity;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
