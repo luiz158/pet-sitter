@@ -12,8 +12,6 @@ import com.ps.repos.ReviewRepo;
 import com.ps.repos.UserRepo;
 import com.ps.services.OperationsService;
 
-import static com.ps.base.ResponseStatus.PROPOSED;
-
 /**
  * Created by iuliana.cosmina on 3/7/16.
  */
@@ -26,19 +24,21 @@ public class SimpleOperationsService implements OperationsService {
 
     @Override
     public Response createResponse(Long sitterId, Long requestId) {
-        final Request request = requestRepo.findById(requestId);
-        final User user = userRepo.findById(sitterId);
-
+        User sitter = userRepo.findById(sitterId);
+        Request request = requestRepo.findById(requestId);
 
         Response response = new Response();
+
+        response.setResponseStatus(ResponseStatus.PROPOSED);
+        response.setUser(sitter);
+        response.setDetails("Sample text!!!");
         response.setRequest(request);
-        response.setUser(user);
-        response.setResponseStatus(PROPOSED);
 
         request.getResponses().add(response);
 
-        requestRepo.save(request);
+
         responseRepo.save(response);
+        requestRepo.save(request);
         return response;
     }
 
