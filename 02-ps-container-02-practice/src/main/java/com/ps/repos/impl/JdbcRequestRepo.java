@@ -11,20 +11,28 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Description;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.inject.Inject;
+import javax.inject.Named;
+//import javax.inject.Qualifier;
 import javax.sql.DataSource;
 import java.util.Set;
 
 /**
  * Created by iuliana.cosmina on 3/21/16.
  */
-@Repository("requestRepo")
+@Named("requestRepo")
 @Description("This is not the bean you are looking for")
 public class JdbcRequestRepo extends JdbcAbstractRepo<Request> implements RequestRepo {
     private Logger logger = LoggerFactory.getLogger(JdbcRequestRepo.class);
 
+    @PostConstruct
     private void init(){
         logger.info(" ... initializing requestRepo ...");
     }
+
+    @PreDestroy
     private void destroy(){
         logger.info(" ... destroying requestRepo ...");
     }
@@ -32,8 +40,8 @@ public class JdbcRequestRepo extends JdbcAbstractRepo<Request> implements Reques
     public JdbcRequestRepo() {
     }
 
-    @Autowired
-    public JdbcRequestRepo(@Qualifier("dataSource") DataSource dataSource) {
+    @Inject
+    public JdbcRequestRepo(@Named("dataSource") DataSource dataSource) {
         super(dataSource);
     }
 

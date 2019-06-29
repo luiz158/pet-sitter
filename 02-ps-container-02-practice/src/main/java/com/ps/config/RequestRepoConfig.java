@@ -13,7 +13,7 @@ import org.springframework.context.annotation.*;
 public class RequestRepoConfig {
 
     @DependsOn("dataSource")
-    @Bean (initMethod = "init", destroyMethod = "destroy")
+    @Bean
     public RequestRepo anotherRepo(){
         return new JdbcRequestRepo();
     }

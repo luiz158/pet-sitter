@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.annotation.Resource;
+import javax.inject.Inject;
+
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -18,8 +21,7 @@ import static org.junit.Assert.assertNotNull;
 @ContextConfiguration(classes = {RequestRepoConfig.class})
 public class AutowiringTest {
 
-    @Qualifier("requestRepo")
-    @Autowired
+    @Resource(name = "requestRepo")
     RequestRepo reqRepo;
 
     @Test
