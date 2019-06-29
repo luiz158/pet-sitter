@@ -21,7 +21,6 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Created by iuliana.cosmina on 4/17/16.
  */
-//TODO 19. Complete the test class definition in order for all the test to pass.
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring/test-cfg.xml"})
 public class SpringPetServiceTest2 {
