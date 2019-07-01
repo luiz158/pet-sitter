@@ -14,7 +14,7 @@ public interface UserRepo {
 
     User findById(Long id);
 
-    List findAllByUserName(String username, boolean exactMatch);
+    List<User> findAllByUserName(String username, boolean exactMatch);
 
     List<User> findAllByLastName(String username);
 
