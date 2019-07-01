@@ -17,7 +17,6 @@ import java.util.*;
  * Created by iuliana.cosmina on 6/4/16.
  */
 @Repository("userNamedTemplateRepo")
-//TODO 29. Some of the methods have incomplete bodies that need to be completed with appropriate NamedParameterJdbcTemplate instance calls.
 public class JdbcNamedTemplateUserRepo implements UserRepo {
 
     private RowMapper<User> rowMapper = new UserRowMapper();

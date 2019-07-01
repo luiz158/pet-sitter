@@ -25,7 +25,6 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {TestDataConfig.class, AppConfig.class})
 @ActiveProfiles("dev")
-// TODO 30. [BONUS] Write test methods to cover all methods in JdbcNamedTemplateUserRepo
 public class TestNamedJdbcTemplateUserRepo {
 
     @Autowired
