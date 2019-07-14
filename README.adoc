@@ -80,23 +80,23 @@ How to build Gradle report
 
 == Aspect Oriented Programming with Spring
 
-todo
+
 
 == Data Access
 
-todo
+
 
 == Spring Web
 
-todo
+
 
 == Spring Advanced Topics
 
-todo
+
 
 == Spring Microservices with Spring Cloud
 
-todo
+
 
 
 
