@@ -84,8 +84,6 @@ public class TestDataConfig {
                 .scanPackages("com.ps.ents")
                 .addProperties(hibernateProperties())
                 .buildSessionFactory();
-
-//        return null; // TODO 39. Add appropriate declaration of SessionFactory bean
     }
 
     @Bean

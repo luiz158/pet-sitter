@@ -53,7 +53,6 @@ public class TestUserService {
 
     @Test
     public void testFindById() {
-        // TODO: 21.06.2019 make it pass
         User user = userService.findById(1L);
         assertNotNull(user);
     }
