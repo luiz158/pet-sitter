@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
         this.userRepo = userRepo;
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+//    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public User findById(Long id) {
         return userRepo.findOne(id);

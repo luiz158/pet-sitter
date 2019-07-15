@@ -45,7 +45,7 @@ public class TestUserRepo {
 
     @Test//(expected = EntityNotFoundException.class)
     public void testNoFindById() {
-        User user = userRepo.getOne(99L);
+        User user = userRepo.findOne(99L);
         assertNull(user);
     }
 
