@@ -38,6 +38,11 @@ public class UserControllerTest {
 
     @Test
     public void testFindOneHandler() throws NotFoundException {
-        // TODO 47: Complete this test for the show() method of UserController
+        ExtendedModelMap model = new ExtendedModelMap();
+        String viewName = userController.show(1L, model);
+        User user = (User) model.get("user");
+        assertNotNull(user);
+        assertEquals(Long.valueOf(1), user.getId());
+        assertEquals("users/show", viewName);
     }
 }
